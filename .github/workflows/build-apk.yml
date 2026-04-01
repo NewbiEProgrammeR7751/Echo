@@ -26,6 +26,9 @@ jobs:
       - name: Sync Capacitor to Android
         run: npx cap sync android
 
+      - name: Give Permission
+        run: chmod +x android/gradlew
+
       - name: Build Android APK
         run: |
           cd android
