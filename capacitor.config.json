@@ -1,0 +1,5 @@
+{
+  "appId": "com.rudy.echo",
+  "appName": "Echo",
+  "webDir": "dist"
+}
