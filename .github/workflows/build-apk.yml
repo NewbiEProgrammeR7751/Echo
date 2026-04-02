@@ -10,12 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # استخدمنا 21 هنا عشان يطابق ملف capacitor.build.gradle حقك
       - name: set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
+          distribution: 'zulu'
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -33,10 +32,12 @@ jobs:
       - name: Give Permission
         run: chmod +x android/gradlew
 
-      - name: Build Android APK
+      - name: Build Android APK (FORCE JAVA 21)
         run: |
           cd android
-          ./gradlew assembleDebug
+          ./gradlew clean assembleDebug -Dorg.gradle.java.home=$JAVA_HOME
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
