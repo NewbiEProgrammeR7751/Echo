@@ -1,15 +1,23 @@
-android {
-    namespace = "com.rudy.echo"
-    compileSdk = rootProject.ext.compileSdkVersion
-    
-    // Add these lines to specify Java compatibility
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
     }
-    
-    defaultConfig {
-        // ... rest of your config
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'com.google.gms:google-services:4.4.4'
     }
-    // ... rest remains the same
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
